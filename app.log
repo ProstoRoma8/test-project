@@ -54,3 +54,7 @@ INFO: Калькулятор: рейс розраховано — MH-6, дист
 INFO: Видалено літак: MH-6
 трав. 11, 2026 1:08:10 ПП commands.UserCommands.ViewAllPlanesCommand execute
 INFO: Перегляд флоту: 1 апаратів.
+трав. 11, 2026 5:56:52 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 5:56:52 ПП main.AirlineApp main
+INFO: === Запуск додатка AirlineApp ===
