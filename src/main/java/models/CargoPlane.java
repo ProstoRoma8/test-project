@@ -2,10 +2,9 @@ package models;
 
 public class CargoPlane extends Plane {
 
-    public CargoPlane(String model, int fuelConsumption, int flightRangeKm,
-                      double cruiseSpeedKmh, double capacity) {
-
-        super(model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, capacity);
+    public CargoPlane(int id, String model, int fuelConsumption, int flightRangeKm, double cruiseSpeedKmh, double capacity)
+    {
+        super(id, model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, capacity);
     }
 
     public double getPayloadCapacity() {

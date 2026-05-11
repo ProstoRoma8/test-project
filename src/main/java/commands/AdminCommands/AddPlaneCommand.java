@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class AddPlaneCommand implements Command {
 
     private final Scanner sc = new Scanner(System.in);
+    private int id;
 
     @Override
     public void execute() {
@@ -37,18 +38,18 @@ public class AddPlaneCommand implements Command {
                 if (hasBusiness) {
                     businessSeats = getValidInt("Кількість місць бізнес-класу: ", 1, seats);
                 }
-                plane = new PassengerPlane(model, fuel, range, speed,
+                plane = new PassengerPlane(id, model, fuel, range, speed,
                         (double) seats, hasBusiness, businessSeats);
             }
             case 2 -> {
                 double tons = getValidDouble("Вантажопідйомність (тонн): ", 0.1, 500);
-                plane = new CargoPlane(model, fuel, range, speed, tons);
+                plane = new CargoPlane(0, model, fuel, range, speed, tons);
             }
             case 3 -> {
                 int passengers = getValidInt("Місткість (осіб): ", 1, 50);
                 int altitude   = getValidInt("Макс. висота польоту (м): ", 100, 9000);
                 boolean hoist  = askYesNo("Чи є рятувальна лебідка? (y/n): ");
-                plane = new Helicopter(model, fuel, range, speed,
+                plane = new Helicopter(id, model, fuel, range, speed,
                         passengers, altitude, hoist);
             }
             default -> { return; }

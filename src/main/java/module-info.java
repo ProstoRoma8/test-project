@@ -4,6 +4,8 @@ module airline.project {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.logging;
+    requires java.sql;
+    requires com.microsoft.sqlserver.jdbc; // це дозволить модулю бачити драйвер
 
     // Дозволяємо JavaFX доступ до ваших класів
     opens main to javafx.graphics, javafx.fxml;

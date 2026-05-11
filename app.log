@@ -118,3 +118,75 @@ INFO: Додано апарат: test-cargo-plane
 INFO: Додано апарат: test-heli
 трав. 11, 2026 7:36:03 ПП ui.MainController onCalculate
 INFO: Калькулятор: test-heli → 6000 км
+трав. 11, 2026 8:50:18 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 8:50:23 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 8:58:28 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 8:58:32 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:10:58 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:11:06 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:11:58 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:13:50 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:15:03 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:15:06 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:21:29 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:22:51 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:22:55 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:23:54 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:23:59 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:25:14 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:25:18 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:25:29 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:31:46 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:31:49 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:39:30 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:39:33 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+
+трав. 11, 2026 9:41:54 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 9:41:58 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
+

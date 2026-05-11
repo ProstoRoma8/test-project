@@ -15,7 +15,7 @@ class CargoPlaneTest {
         double capacity = 150.0; // тонн
 
         // 2. Дія (Act)
-        CargoPlane cargoPlane = new CargoPlane(model, fuel, range, speed, capacity);
+        CargoPlane cargoPlane = new CargoPlane(0, model, fuel, range, speed, capacity);
 
         // 3. Перевірка (Assert)
         // Перевіряємо, чи конструктор правильно записав дані в поля батьківського класу Plane
@@ -31,7 +31,7 @@ class CargoPlaneTest {
     @Test
     void testGetPayloadCapacity() {
         // Перевіряємо специфічний метод для вантажних літаків
-        CargoPlane cargoPlane = new CargoPlane("TestCargo", 100, 1000, 500, 55.5);
+        CargoPlane cargoPlane = new CargoPlane(0, "TestCargo", 100, 1000, 500, 55.5);
 
         // Метод getPayloadCapacity має повертати те саме, що й getCapacity
         assertEquals(55.5, cargoPlane.getPayloadCapacity(), 0.01);
@@ -39,7 +39,7 @@ class CargoPlaneTest {
 
     @Test
     void testToString() {
-        CargoPlane cargoPlane = new CargoPlane("Mriya", 5000, 10000, 850, 250);
+        CargoPlane cargoPlane = new CargoPlane(0, "Mriya", 5000, 10000, 850, 250);
         String result = cargoPlane.toString();
 
         // Перевіряємо, чи рядок містить ключові слова

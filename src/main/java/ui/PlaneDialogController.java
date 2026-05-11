@@ -1,9 +1,9 @@
 package ui;
 
+import dao.PlaneDao;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.AppContext;
@@ -54,6 +54,7 @@ public class PlaneDialogController implements Initializable {
     private CheckBox  hoistCheckBox;
 
     private Stage dialogStage;
+    private PlaneDao planeDao;
 
     // ─────────────────────────────────────────────
     @Override
@@ -177,7 +178,7 @@ public class PlaneDialogController implements Initializable {
     // ══════════════════════════════════════════════
 
     @FXML
-    private void onSave() {
+    private void onSave(int id) {
         hideError();
 
         // Загальна валідація
@@ -201,11 +202,16 @@ public class PlaneDialogController implements Initializable {
         // Залежно від режиму — редагуємо або додаємо
         if (existingPlane != null) {
             applyEdits(existingPlane, model, fuel, range, speed);
+            // Тут варто додати planeDao.updatePlane(existingPlane), якщо створите такий метод
         } else {
             Plane newPlane = createPlane(model, fuel, range, speed);
-            if (newPlane == null) return;
-            AppContext.airline.addPlane(newPlane);
-            AppContext.logger.info("Додано апарат: " + model);
+            if (newPlane != null) {
+                // 1. Зберігаємо в базу даних
+                planeDao.savePlane(newPlane);
+
+                // 2. Додаємо в локальний список (опціонально, бо refreshAll все одно перечитає БД)
+                AppContext.airline.addPlane(newPlane);
+            }
         }
 
         if (mainController != null) mainController.refreshAll();
@@ -251,6 +257,33 @@ public class PlaneDialogController implements Initializable {
 
     /** Створює новий літак за обраним типом. */
     private Plane createPlane(String model, int fuel, int range, double speed) {
+        // 1. Оголошуємо ID один раз на початку методу
+        int id = (existingPlane != null) ? existingPlane.getId() : 0;
+
+        if (rbPassenger.isSelected()) {
+            double cap = parseDoubleField(capacityField, "Місткість — число."); if (cap < 0) return null;
+            boolean biz = businessCheckBox.isSelected();
+            int bSeats = 0;
+            if (biz) {
+                try { bSeats = Integer.parseInt(businessSeatsField.getText().trim()); }
+                catch (NumberFormatException e) { showError("Бізнес-місця — ціле число."); return null; }
+            }
+            return new PassengerPlane(id, model, fuel, range, speed, cap, biz, bSeats);
+
+        } else if (rbCargo.isSelected()) {
+            double pld = parseDoubleOrShow("Вантажопідйомність — число."); if (pld < 0) return null;
+            return new CargoPlane(id, model, fuel, range, speed, pld);
+
+        } else { // Гелікоптер
+            double cap = parseDoubleField(heliCapField, "Кількість місць — ціле число."); if (cap < 0) return null;
+            int alt;
+            try { alt = Integer.parseInt(altitudeField.getText().trim()); }
+            catch (NumberFormatException e) { showError("Висота — ціле число."); return null; }
+            // Тепер id доступний і тут
+            return new Helicopter(id, model, fuel, range, speed, (int) cap, alt, hoistCheckBox.isSelected());
+        }
+    }
+    /* private Plane createPlane(String model, int fuel, int range, double speed, int id) {
         if (rbPassenger.isSelected()) {
             double cap = parseDoubleField(capacityField, "Кількість місць — ціле число."); if (cap < 0) return null;
             boolean hasBiz = businessCheckBox.isSelected();
@@ -259,20 +292,20 @@ public class PlaneDialogController implements Initializable {
                 try { bizSeats = Integer.parseInt(businessSeatsField.getText().trim()); }
                 catch (NumberFormatException e) { showError("Місця бізнес-класу — ціле число."); return null; }
             }
-            return new PassengerPlane(model, fuel, range, speed, cap, hasBiz, bizSeats);
+            return new PassengerPlane(id, model, fuel, range, speed, cap, hasBiz, bizSeats);
 
         } else if (rbCargo.isSelected()) {
             double payload = parseDoubleField(payloadField, "Вантажопідйомність — числове значення."); if (payload < 0) return null;
-            return new CargoPlane(model, fuel, range, speed, payload);
+            return new CargoPlane(0, model, fuel, range, speed, payload);
 
         } else { // Helicopter
             double cap = parseDoubleField(heliCapField, "Кількість місць — ціле число."); if (cap < 0) return null;
             int alt;
             try { alt = Integer.parseInt(altitudeField.getText().trim()); }
             catch (NumberFormatException e) { showError("Висота — ціле число."); return null; }
-            return new Helicopter(model, fuel, range, speed, (int) cap, alt, hoistCheckBox.isSelected());
+            return new Helicopter(id, model, fuel, range, speed, (int) cap, alt, hoistCheckBox.isSelected());
         }
-    }
+    } */
 
     private double parseDoubleField(TextField field, String errorMsg) {
         try {

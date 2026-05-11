@@ -1,5 +1,6 @@
 package ui;
 
+import dao.PlaneDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,9 +23,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+
 public class MainController implements Initializable {
 
-    // ── Header ──
+    private final PlaneDao planeDao = new PlaneDao(); // Створюємо об'єкт для роботи з БД
+
+// ── Header ──
     @FXML private Label airlineNameLabel;
     @FXML private Label fleetCountLabel;
 
@@ -63,6 +68,7 @@ public class MainController implements Initializable {
     @FXML private TableColumn<PlaneRow,Integer> sColRange;
     @FXML private TableColumn<PlaneRow,Integer> sColFuel;
     @FXML private TableColumn<PlaneRow,String>  sColCapacity;
+
 
     // ── Data ──
     private final ObservableList<PlaneRow> masterList = FXCollections.observableArrayList();
@@ -288,9 +294,11 @@ public class MainController implements Initializable {
         confirm.setContentText("Цю дію неможливо скасувати.");
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
+            planeDao.deletePlane(selected.getPlane().getId());
             int idx = AppContext.airline.getFleet().indexOf(selected.getPlane());
             AppContext.airline.deletePlane(idx);
-            AppContext.logger.info("Видалено: " + selected.getPlane().getModel());
+            AppContext.logger.info("Видалено з БД: " + selected.getPlane().getModel());
+            // AppContext.logger.info("Видалено: " + selected.getPlane().getModel());
             refreshAll();
         }
     }
@@ -327,8 +335,14 @@ public class MainController implements Initializable {
     // ══════════════════════════════════════════════
 
     public void refreshAll() {
+        List<Plane> planesFromDb = planeDao.getAllPlanes();
+
+        AppContext.airline.getFleet().clear();
+        AppContext.airline.getFleet().addAll(planesFromDb);
+
         masterList.clear();
-        AppContext.airline.getFleet().forEach(p -> masterList.add(new PlaneRow(p)));
+        planesFromDb.forEach(p -> masterList.add(new PlaneRow(p)));
+        // AppContext.airline.getFleet().forEach(p -> masterList.add(new PlaneRow(p))); // old line
 
         int total = AppContext.airline.getFleet().size();
         fleetCountLabel.setText(total + " апаратів");

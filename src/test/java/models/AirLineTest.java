@@ -37,7 +37,7 @@ class AirLineTest {
     @Test
     void testGetPlaneByIndex() {
         Plane p1 = new PassengerPlane("Plane 1", 100, 1000, 500, 100, false, 0);
-        Plane p2 = new CargoPlane("Plane 2", 200, 2000, 600, 50);
+        Plane p2 = new CargoPlane(0, "Plane 2", 200, 2000, 600, 50);
         airline.addPlane(p1);
         airline.addPlane(p2);
 
@@ -59,7 +59,7 @@ class AirLineTest {
         // 2. Пасажирський (200 місць)
         airline.addPlane(new PassengerPlane("Pass 2", 100, 1000, 500, 200, false, 0));
         // 3. Вантажний (50 тонн)
-        airline.addPlane(new CargoPlane("Cargo 1", 200, 2000, 600, 50));
+        airline.addPlane(new CargoPlane(0, "Cargo 1", 200, 2000, 600, 50));
 
         // Перевірка кількості літаків певного типу
         assertEquals(2, airline.getTotalPassengerPlanes());
@@ -79,7 +79,7 @@ class AirLineTest {
         assertDoesNotThrow(() -> airline.printFleetShort());
 
         // 2. Заповнений список
-        airline.addPlane(new CargoPlane("Test", 100, 1000, 500, 50));
+        airline.addPlane(new CargoPlane(0, "Test", 100, 1000, 500, 50));
         assertDoesNotThrow(() -> airline.printFleetShort());
     }
 }

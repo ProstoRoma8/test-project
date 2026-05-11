@@ -5,10 +5,10 @@ public class PassengerPlane extends Plane {
     private boolean hasBusinessClass;
     private int businessSeats;
 
-    public PassengerPlane(String model, int fuelConsumption, int flightRangeKm, double cruiseSpeedKmh, double capacity,
+    public PassengerPlane(int id, String model, int fuelConsumption, int flightRangeKm, double cruiseSpeedKmh, double capacity,
                           boolean hasBusinessClass, int businessSeats) { // Власні поля
 
-        super(model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, capacity);
+        super(id, model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, capacity);
 
         this.hasBusinessClass = hasBusinessClass;
 

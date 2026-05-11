@@ -5,10 +5,10 @@ public class Helicopter extends Plane {
     private int maxAltitudeM;       // Максимальна висота польоту (метри)
     private boolean hasHoist;       // Чи є рятувальна лебідка
 
-    public Helicopter(String model, int fuelConsumption, int flightRangeKm,
+    public Helicopter(int id, String model, int fuelConsumption, int flightRangeKm,
                       double cruiseSpeedKmh, int passengerCapacity,
                       int maxAltitudeM, boolean hasHoist) {
-        super(model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, passengerCapacity);
+        super(id, model, fuelConsumption, flightRangeKm, cruiseSpeedKmh, passengerCapacity);
         this.maxAltitudeM = maxAltitudeM;
         this.hasHoist = hasHoist;
     }
