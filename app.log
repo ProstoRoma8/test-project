@@ -1,0 +1,56 @@
+груд. 16, 2025 10:13:19 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+груд. 16, 2025 10:13:19 ПП main.AirlineApp main
+INFO: === Запуск додатка AirlineApp ===
+груд. 16, 2025 10:13:21 ПП main.AirlineApp main
+INFO: Авторизація: обрано роль ADMIN
+груд. 16, 2025 10:13:53 ПП commands.AdminCommands.AddPlaneCommand execute
+INFO: Додано новий літак: test (Тип: 2)
+груд. 16, 2025 10:14:02 ПП main.AirlineApp main
+SEVERE: Критичний збій програми!
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:947)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at main.Menu.handleUserInput(Menu.java:27)
+	at main.AirlineApp.main(AirlineApp.java:39)
+
+трав. 11, 2026 1:01:11 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 1:01:11 ПП main.AirlineApp main
+INFO: === Запуск додатка AirlineApp ===
+трав. 11, 2026 1:01:15 ПП main.AirlineApp main
+INFO: Авторизація: обрано роль ADMIN
+трав. 11, 2026 1:01:41 ПП commands.AdminCommands.AddPlaneCommand execute
+INFO: Додано новий літак: test (Тип: 1)
+трав. 11, 2026 1:01:45 ПП commands.UserCommands.ViewAllPlanesCommand execute
+INFO: Перегляд флоту: 1 літаків.
+трав. 11, 2026 1:02:01 ПП commands.AdminCommands.SortPlanesCommand execute
+INFO: Сортування/фільтрація флоту: вибір=1, результатів=1
+трав. 11, 2026 1:02:30 ПП commands.UserCommands.FlightCalculatorCommand execute
+INFO: Калькулятор: рейс розраховано — test, дистанція=500 км, пальне=384,6 кг
+трав. 11, 2026 1:06:01 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 1:06:01 ПП main.AirlineApp main
+INFO: === Запуск додатка AirlineApp ===
+трав. 11, 2026 1:06:03 ПП main.AirlineApp main
+INFO: Авторизація: обрано роль USER
+трав. 11, 2026 1:06:17 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 1:06:17 ПП main.AirlineApp main
+INFO: === Запуск додатка AirlineApp ===
+трав. 11, 2026 1:06:19 ПП main.AirlineApp main
+INFO: Авторизація: обрано роль ADMIN
+трав. 11, 2026 1:07:03 ПП commands.AdminCommands.AddPlaneCommand execute
+INFO: Додано: MH-6 (тип=3)
+трав. 11, 2026 1:07:33 ПП commands.AdminCommands.AddPlaneCommand execute
+INFO: Додано: C-130 (тип=2)
+трав. 11, 2026 1:07:37 ПП commands.UserCommands.ViewAllPlanesCommand execute
+INFO: Перегляд флоту: 2 апаратів.
+трав. 11, 2026 1:07:56 ПП commands.UserCommands.FlightCalculatorCommand execute
+INFO: Калькулятор: рейс розраховано — MH-6, дистанція=50 км, пальне=35,7 кг
+трав. 11, 2026 1:08:07 ПП commands.AdminCommands.DeletePlaneCommand execute
+INFO: Видалено літак: MH-6
+трав. 11, 2026 1:08:10 ПП commands.UserCommands.ViewAllPlanesCommand execute
+INFO: Перегляд флоту: 1 апаратів.

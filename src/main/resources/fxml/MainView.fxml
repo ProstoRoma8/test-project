@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ui.MainController"
+            stylesheets="@/css/style.css">
+
+    <!-- ══ HEADER ══ -->
+    <top>
+        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="12">
+            <padding><Insets top="14" right="20" bottom="14" left="20"/></padding>
+            <Label text="✈" styleClass="header-icon"/>
+            <VBox spacing="2">
+                <Label text="Система управління авіафлотом" styleClass="header-title"/>
+                <Label fx:id="airlineNameLabel" text="My Airline" styleClass="header-sub"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="fleetCountLabel" text="0 апаратів" styleClass="header-badge"/>
+        </HBox>
+    </top>
+
+    <!-- ══ MAIN TABS ══ -->
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" styleClass="main-tabs">
+
+            <!-- ─── ТАБ 1: ФЛОТ ─── -->
+            <Tab text="✈  Флот">
+                <BorderPane>
+                    <!-- Toolbar -->
+                    <top>
+                        <HBox styleClass="toolbar" spacing="10" alignment="CENTER_LEFT">
+                            <padding><Insets top="10" right="16" bottom="10" left="16"/></padding>
+                            <Button fx:id="addBtn"    text="＋ Додати"   styleClass="btn-primary"  onAction="#onAddPlane"/>
+                            <Button fx:id="editBtn"   text="✏ Редагувати" styleClass="btn-secondary" onAction="#onEditPlane"/>
+                            <Button fx:id="deleteBtn" text="✕ Видалити"  styleClass="btn-danger"   onAction="#onDeletePlane"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="searchField" promptText="🔍 Пошук за моделлю..." prefWidth="220" styleClass="search-field"/>
+                        </HBox>
+                    </top>
+
+                    <!-- Table -->
+                    <center>
+                        <TableView fx:id="fleetTable" styleClass="fleet-table">
+                            <columns>
+                                <TableColumn fx:id="colModel"   text="Модель"           prefWidth="180"/>
+                                <TableColumn fx:id="colType"    text="Тип"              prefWidth="130"/>
+                                <TableColumn fx:id="colRange"   text="Дальність (км)"   prefWidth="130"/>
+                                <TableColumn fx:id="colFuel"    text="Пальне (кг/год)"  prefWidth="130"/>
+                                <TableColumn fx:id="colSpeed"   text="Швидкість (км/год)" prefWidth="140"/>
+                                <TableColumn fx:id="colCapacity" text="Місткість"        prefWidth="120"/>
+                            </columns>
+                            <placeholder>
+                                <Label text="Флот порожній — натисніть «＋ Додати»" styleClass="table-placeholder"/>
+                            </placeholder>
+                        </TableView>
+                    </center>
+
+                    <!-- Stats bar -->
+                    <bottom>
+                        <HBox styleClass="stats-bar" spacing="24" alignment="CENTER_LEFT">
+                            <padding><Insets top="10" right="16" bottom="10" left="16"/></padding>
+                            <Label fx:id="statPassenger"  text="Пасажирських: 0"   styleClass="stat-chip stat-passenger"/>
+                            <Label fx:id="statCargo"      text="Вантажних: 0"      styleClass="stat-chip stat-cargo"/>
+                            <Label fx:id="statHeli"       text="Гелікоптерів: 0"   styleClass="stat-chip stat-heli"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="statTotalCap"   text="Загальна місткість: 0 осіб"   styleClass="stat-text"/>
+                            <Label fx:id="statTotalPayload" text="Вантаж: 0 тонн"             styleClass="stat-text"/>
+                        </HBox>
+                    </bottom>
+                </BorderPane>
+            </Tab>
+
+            <!-- ─── ТАБ 2: КАЛЬКУЛЯТОР ─── -->
+            <Tab text="🧮  Калькулятор">
+                <ScrollPane fitToWidth="true" styleClass="scroll-plain">
+                    <VBox spacing="20" styleClass="calc-pane">
+                        <padding><Insets top="24" right="32" bottom="24" left="32"/></padding>
+
+                        <Label text="Калькулятор рейсу" styleClass="section-title"/>
+
+                        <HBox spacing="24" alignment="TOP_LEFT">
+
+                            <!-- LEFT: inputs -->
+                            <VBox spacing="14" HBox.hgrow="ALWAYS">
+                                <Label text="Літальний апарат" styleClass="field-label"/>
+                                <ComboBox fx:id="calcPlaneCombo" promptText="Оберіть апарат..."
+                                          maxWidth="Infinity"/>
+
+                                <Label text="Дистанція польоту (км)" styleClass="field-label"/>
+                                <TextField fx:id="calcDistanceField" promptText="Наприклад: 1500"/>
+
+                                <Label text="Ціна пального (USD за кг)" styleClass="field-label"/>
+                                <TextField fx:id="calcPriceField" promptText="Наприклад: 0.85"/>
+
+                                <Button text="▶  Розрахувати" styleClass="btn-primary btn-wide"
+                                        onAction="#onCalculate"/>
+                            </VBox>
+
+                            <!-- RIGHT: result card -->
+                            <VBox fx:id="resultCard" spacing="14" styleClass="result-card" minWidth="280">
+                                <Label text="Результат" styleClass="section-title"/>
+
+                                <HBox styleClass="result-row">
+                                    <Label text="Час польоту" styleClass="result-label"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="resTime" text="—" styleClass="result-value"/>
+                                </HBox>
+                                <HBox styleClass="result-row">
+                                    <Label text="Пального потрібно" styleClass="result-label"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="resFuel" text="—" styleClass="result-value"/>
+                                </HBox>
+                                <HBox styleClass="result-row">
+                                    <Label text="Вартість рейсу" styleClass="result-label"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="resCost" text="—" styleClass="result-value"/>
+                                </HBox>
+
+                                <Separator/>
+
+                                <HBox styleClass="result-row" alignment="CENTER">
+                                    <Label fx:id="resStatus" text="Введіть дані та натисніть «Розрахувати»"
+                                           styleClass="result-status" wrapText="true"/>
+                                </HBox>
+                            </VBox>
+
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+            </Tab>
+
+            <!-- ─── ТАБ 3: СОРТУВАННЯ ─── -->
+            <Tab text="📊  Аналітика">
+                <VBox spacing="16" styleClass="sort-pane">
+                    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+                    <Label text="Сортування та фільтрація" styleClass="section-title"/>
+
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <ComboBox fx:id="sortCombo" promptText="Сортувати за..."  prefWidth="220">
+                            <items>
+                                <javafx.collections.FXCollections/>
+                            </items>
+                        </ComboBox>
+                        <TextField fx:id="filterMinField" promptText="Мін. пальне" prefWidth="110"/>
+                        <TextField fx:id="filterMaxField" promptText="Макс. пальне" prefWidth="110"/>
+                        <TextField fx:id="filterRangeField" promptText="Мін. дальність" prefWidth="120"/>
+                        <Button text="Застосувати" styleClass="btn-primary" onAction="#onApplyFilter"/>
+                        <Button text="Скинути"     styleClass="btn-secondary" onAction="#onResetFilter"/>
+                    </HBox>
+
+                    <TableView fx:id="sortTable" VBox.vgrow="ALWAYS" styleClass="fleet-table">
+                        <columns>
+                            <TableColumn fx:id="sColModel"    text="Модель"           prefWidth="180"/>
+                            <TableColumn fx:id="sColType"     text="Тип"              prefWidth="130"/>
+                            <TableColumn fx:id="sColRange"    text="Дальність (км)"   prefWidth="130"/>
+                            <TableColumn fx:id="sColFuel"     text="Пальне (кг/год)"  prefWidth="130"/>
+                            <TableColumn fx:id="sColCapacity" text="Місткість"        prefWidth="120"/>
+                        </columns>
+                        <placeholder>
+                            <Label text="Немає результатів" styleClass="table-placeholder"/>
+                        </placeholder>
+                    </TableView>
+
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+</BorderPane>

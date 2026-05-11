@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ui.PlaneDialogController"
+      spacing="16" styleClass="dialog-pane" minWidth="420">
+    <padding><Insets top="24" right="28" bottom="24" left="28"/></padding>
+
+    <Label fx:id="dialogTitle" text="Додати апарат" styleClass="section-title"/>
+
+    <!-- Тип -->
+    <VBox spacing="6">
+        <Label text="Тип апарату" styleClass="field-label"/>
+        <ToggleGroup fx:id="typeGroup"/>
+        <HBox spacing="12">
+            <RadioButton fx:id="rbPassenger" text="Пасажирський" toggleGroup="$typeGroup" selected="true"/>
+            <RadioButton fx:id="rbCargo"     text="Вантажний"    toggleGroup="$typeGroup"/>
+            <RadioButton fx:id="rbHeli"      text="Гелікоптер"   toggleGroup="$typeGroup"/>
+        </HBox>
+    </VBox>
+
+    <Separator/>
+
+    <!-- Загальні поля -->
+    <VBox spacing="6">
+        <Label text="Модель *" styleClass="field-label"/>
+        <TextField fx:id="modelField" promptText="Наприклад: Boeing 737"/>
+    </VBox>
+
+    <HBox spacing="14">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Витрата пального (кг/год) *" styleClass="field-label"/>
+            <TextField fx:id="fuelField" promptText="Наприклад: 2500"/>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Дальність польоту (км) *" styleClass="field-label"/>
+            <TextField fx:id="rangeField" promptText="Наприклад: 5000"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="6">
+        <Label text="Крейсерська швидкість (км/год) *" styleClass="field-label"/>
+        <TextField fx:id="speedField" promptText="Наприклад: 850"/>
+    </VBox>
+
+    <Separator/>
+
+    <!-- Специфічні поля (змінюються динамічно) -->
+    <VBox fx:id="specificFields" spacing="12"/>
+
+    <!-- Помилка -->
+    <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" managed="false" visible="false"/>
+
+    <!-- Кнопки -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Скасувати" styleClass="btn-secondary" onAction="#onCancel"/>
+        <Button fx:id="saveBtn" text="Зберегти" styleClass="btn-primary" onAction="#onSave"/>
+    </HBox>
+
+</VBox>
