@@ -58,3 +58,63 @@ INFO: Перегляд флоту: 1 апаратів.
 INFO: === Запуск програми ===
 трав. 11, 2026 5:56:52 ПП main.AirlineApp main
 INFO: === Запуск додатка AirlineApp ===
+трав. 11, 2026 6:39:49 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 6:39:59 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 6:40:17 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 6:40:28 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 6:53:06 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 7:05:52 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 7:06:11 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 7:06:15 ПП ui.MainController openPlaneDialog
+SEVERE: Помилка відкриття діалогу: 
+/C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:17
+
+трав. 11, 2026 7:13:40 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 7:15:26 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: Tst Heil
+трав. 11, 2026 7:17:11 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: B737
+трав. 11, 2026 7:23:33 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 7:23:51 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test
+трав. 11, 2026 7:27:11 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 7:27:26 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test
+трав. 11, 2026 7:30:08 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 7:30:26 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test-plane
+трав. 11, 2026 7:31:04 ПП ui.MainController onCalculate
+INFO: Калькулятор: test-plane → 25000 км
+трав. 11, 2026 7:33:37 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 7:34:03 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test-plane
+трав. 11, 2026 7:35:05 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test-cargo-plane
+трав. 11, 2026 7:35:38 ПП ui.PlaneDialogController onSave
+INFO: Додано апарат: test-heli
+трав. 11, 2026 7:36:03 ПП ui.MainController onCalculate
+INFO: Калькулятор: test-heli → 6000 км

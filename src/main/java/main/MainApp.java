@@ -17,9 +17,9 @@ public class MainApp extends Application {
                 getClass().getResource("/fxml/MainView.fxml")
         );
         Scene scene = new Scene(loader.load(), 1000, 660);
-        scene.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm()
-        );
+        //scene.getStylesheets().add(
+        //        Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm()
+        //);
         stage.setTitle("✈  Система управління авіафлотом");
         stage.setMinWidth(800);
         stage.setMinHeight(550);

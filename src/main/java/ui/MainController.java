@@ -141,7 +141,6 @@ public class MainController implements Initializable {
         List<Plane> result;
         String sortVal = sortCombo.getValue();
 
-        // Базова вибірка
         if ("За дальністю (зростання)".equals(sortVal)) {
             result = AppContext.airline.getSortedByRange();
         } else if ("За витратою пального (зростання)".equals(sortVal)) {
@@ -309,13 +308,17 @@ public class MainController implements Initializable {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setTitle(existingPlane == null ? "Додати апарат" : "Редагувати апарат");
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(
-                    Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
+            // ФІКС: додаємо null-check перед getResource
+            URL cssUrl = getClass().getResource("/css/style.css");
+            if (cssUrl != null) {
+                scene.getStylesheets().add(cssUrl.toExternalForm());
+            }
             dialog.setScene(scene);
             dialog.setResizable(false);
             dialog.showAndWait();
         } catch (IOException e) {
             AppContext.logger.severe("Помилка відкриття діалогу: " + e.getMessage());
+            showInfo("Помилка відкриття діалогу: " + e.getMessage());
         }
     }
 

@@ -12,12 +12,6 @@ import models.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Контролер діалогу додавання / редагування літального апарату.
- *
- * НОВИЙ ФАЙЛ: MainController посилається на PlaneDialogController,
- * але цього класу не було — додано повну реалізацію.
- */
 public class PlaneDialogController implements Initializable {
 
     // ── Заголовок ──
@@ -58,6 +52,8 @@ public class PlaneDialogController implements Initializable {
     private TextField heliCapField;
     private TextField altitudeField;
     private CheckBox  hoistCheckBox;
+
+    private Stage dialogStage;
 
     // ─────────────────────────────────────────────
     @Override
@@ -103,6 +99,10 @@ public class PlaneDialogController implements Initializable {
             altitudeField.setText(String.valueOf(h.getMaxAltitudeM()));
             hoistCheckBox.setSelected(h.isHasHoist());
         }
+    }
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
     }
 
     public void setMainController(MainController mc) {

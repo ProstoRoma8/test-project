@@ -7,14 +7,17 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="ui.PlaneDialogController"
       spacing="16" styleClass="dialog-pane" minWidth="420">
+
+    <fx:define>
+        <ToggleGroup fx:id="typeGroup"/>
+    </fx:define>
+
     <padding><Insets top="24" right="28" bottom="24" left="28"/></padding>
 
     <Label fx:id="dialogTitle" text="Додати апарат" styleClass="section-title"/>
 
-    <!-- Тип -->
     <VBox spacing="6">
         <Label text="Тип апарату" styleClass="field-label"/>
-        <ToggleGroup fx:id="typeGroup"/>
         <HBox spacing="12">
             <RadioButton fx:id="rbPassenger" text="Пасажирський" toggleGroup="$typeGroup" selected="true"/>
             <RadioButton fx:id="rbCargo"     text="Вантажний"    toggleGroup="$typeGroup"/>

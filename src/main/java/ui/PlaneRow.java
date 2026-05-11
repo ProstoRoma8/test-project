@@ -6,6 +6,14 @@ import models.Helicopter;
 import models.PassengerPlane;
 import models.Plane;
 
+/**
+ * ViewModel-обгортка над Plane для відображення у TableView.
+ *
+ * ФІКС: PropertyValueFactory шукає геттери за конвенцією JavaBeans:
+ *   getValue("model") → getModel()
+ * Тому додані явні геттери getModel(), getType(), getRange(), getFuel(),
+ * getSpeed(), getCapacity() поряд із *Property()-методами.
+ */
 public class PlaneRow {
 
     private final Plane plane;
@@ -39,8 +47,18 @@ public class PlaneRow {
         }
     }
 
+    // ── Довідка до реального об'єкту ──
     public Plane getPlane() { return plane; }
 
+    // ── JavaBeans геттери (потрібні PropertyValueFactory) ──
+    public String  getModel()    { return model.get(); }
+    public String  getType()     { return type.get(); }
+    public int     getRange()    { return range.get(); }
+    public int     getFuel()     { return fuel.get(); }
+    public double  getSpeed()    { return speed.get(); }
+    public String  getCapacity() { return capacity.get(); }
+
+    // ── Property-методи (для прив'язок / слухачів) ──
     public StringProperty  modelProperty()    { return model; }
     public StringProperty  typeProperty()     { return type; }
     public IntegerProperty rangeProperty()    { return range; }

@@ -5,8 +5,8 @@
 <?import javafx.geometry.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ui.MainController"
-            stylesheets="@/css/style.css">
+            fx:controller="ui.MainController">
+            <!-- stylesheets="@/css/style.css"-->
 
     <!-- ══ HEADER ══ -->
     <top>
@@ -141,9 +141,9 @@
 
                     <HBox spacing="12" alignment="CENTER_LEFT">
                         <ComboBox fx:id="sortCombo" promptText="Сортувати за..."  prefWidth="220">
-                            <items>
+                            <!--<items>
                                 <javafx.collections.FXCollections/>
-                            </items>
+                            </items>-->
                         </ComboBox>
                         <TextField fx:id="filterMinField" promptText="Мін. пальне" prefWidth="110"/>
                         <TextField fx:id="filterMaxField" promptText="Макс. пальне" prefWidth="110"/>
