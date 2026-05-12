@@ -5,48 +5,84 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CargoPlaneTest {
 
+    // ── Конструктор ──
+
     @Test
-    void testCargoPlaneConstructorAndGetters() {
-        // 1. Підготовка даних (Arrange)
-        String model = "Antonov An-124";
-        int fuel = 12000;      // кг/год
-        int range = 4500;      // км
-        double speed = 800.0;  // км/год
-        double capacity = 150.0; // тонн
+    void constructor_setsAllFieldsCorrectly() {
+        CargoPlane cp = new CargoPlane(1, "AN-124", 15000, 5400, 865, 120.0);
 
-        // 2. Дія (Act)
-        CargoPlane cargoPlane = new CargoPlane(0, model, fuel, range, speed, capacity);
+        assertEquals(1,        cp.getId());
+        assertEquals("AN-124", cp.getModel());
+        assertEquals(15000,    cp.getFuelConsumption());
+        assertEquals(5400,     cp.getFlightRangeKm());
+        assertEquals(865.0,    cp.getCruiseSpeedKmh(), 0.01);
+        assertEquals(120.0,    cp.getCapacity(),       0.01);
+    }
 
-        // 3. Перевірка (Assert)
-        // Перевіряємо, чи конструктор правильно записав дані в поля батьківського класу Plane
-        assertEquals("Antonov An-124", cargoPlane.getModel());
-        assertEquals(12000, cargoPlane.getFuelConsumption());
-        assertEquals(4500, cargoPlane.getFlightRangeKm());
+    // ── getPayloadCapacity ──
 
-        // Для double використовуємо третій параметр (delta) - допустиму похибку
-        assertEquals(800.0, cargoPlane.getCruiseSpeedKmh(), 0.01);
-        assertEquals(150.0, cargoPlane.getCapacity(), 0.01);
+    @Test
+    void getPayloadCapacity_returnsSameAsCapacity() {
+        CargoPlane cp = new CargoPlane(1, "Cargo", 5000, 3000, 700, 75.5);
+
+        assertEquals(cp.getCapacity(), cp.getPayloadCapacity(), 0.01);
     }
 
     @Test
-    void testGetPayloadCapacity() {
-        // Перевіряємо специфічний метод для вантажних літаків
-        CargoPlane cargoPlane = new CargoPlane(0, "TestCargo", 100, 1000, 500, 55.5);
+    void getPayloadCapacity_afterSetCapacity_updatesCorrectly() {
+        CargoPlane cp = new CargoPlane(1, "Cargo", 5000, 3000, 700, 50.0);
+        cp.setCapacity(100.0);
 
-        // Метод getPayloadCapacity має повертати те саме, що й getCapacity
-        assertEquals(55.5, cargoPlane.getPayloadCapacity(), 0.01);
+        assertEquals(100.0, cp.getPayloadCapacity(), 0.01);
+    }
+
+    // ── toString ──
+
+    @Test
+    void toString_containsCargoPlaneAndPayload() {
+        CargoPlane cp = new CargoPlane(1, "AN-124", 15000, 5400, 865, 120.0);
+        String s = cp.toString();
+
+        assertNotNull(s);
+        assertTrue(s.contains("CargoPlane"));
+        assertTrue(s.contains("120.0"));
+    }
+
+    // ── Спадковість і setters ──
+
+    @Test
+    void isInstanceOfPlane() {
+        assertInstanceOf(Plane.class, new CargoPlane(1, "Cargo", 5000, 3000, 700, 50));
     }
 
     @Test
-    void testToString() {
-        CargoPlane cargoPlane = new CargoPlane(0, "Mriya", 5000, 10000, 850, 250);
-        String result = cargoPlane.toString();
+    void setters_fromParent_workCorrectly() {
+        CargoPlane cp = new CargoPlane(1, "Old", 5000, 3000, 700, 50);
 
-        // Перевіряємо, чи рядок містить ключові слова
-        assertNotNull(result);
-        assertTrue(result.contains("CargoPlane")); // Має бути назва класу
-        assertTrue(result.contains("Mriya"));      // Має бути назва моделі
-        assertTrue(result.contains("payload="));   // Має бути поле payload
-        assertTrue(result.contains("250"));        // Має бути значення вантажопідйомності
+        cp.setModel("New Cargo");
+        cp.setFuelConsumption(8000);
+        cp.setFlightRangeKm(4000);
+        cp.setCruiseSpeedKmh(750.0);
+        cp.setCapacity(200.0);
+
+        assertEquals("New Cargo", cp.getModel());
+        assertEquals(8000,  cp.getFuelConsumption());
+        assertEquals(4000,  cp.getFlightRangeKm());
+        assertEquals(750.0, cp.getCruiseSpeedKmh(), 0.01);
+        assertEquals(200.0, cp.getCapacity(),       0.01);
+    }
+
+    // ── Граничні значення ──
+
+    @Test
+    void zeroPayload_isAllowed() {
+        CargoPlane cp = new CargoPlane(1, "EmptyCargo", 1000, 1000, 500, 0.0);
+        assertEquals(0.0, cp.getPayloadCapacity(), 0.01);
+    }
+
+    @Test
+    void largePayload_isStored() {
+        CargoPlane cp = new CargoPlane(1, "HugeCargo", 20000, 10000, 900, 500.0);
+        assertEquals(500.0, cp.getPayloadCapacity(), 0.01);
     }
 }

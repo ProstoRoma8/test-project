@@ -5,81 +5,126 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PassengerPlaneTest {
 
+    // ── Конструктор з бізнес-класом ──
+
     @Test
-    void testConstructorWithBusinessClass() {
-        // Сценарій: Створюємо літак, де Є бізнес-клас
-        PassengerPlane plane = new PassengerPlane(
-                "Boeing 737", 2500, 5000, 850, 180,
-                true, 12 // hasBusiness = true, 12 місць
-        );
+    void constructor_withBusinessClass_setsAllFields() {
+        PassengerPlane p = new PassengerPlane(1, "Boeing 737", 2500, 5000, 850, 180, true, 12);
 
-        // Перевіряємо батьківські поля
-        assertEquals("Boeing 737", plane.getModel());
-        assertEquals(180, plane.getCapacity());
-
-        // Перевіряємо власні поля
-        assertTrue(plane.isHasBusinessClass(), "Має бути true");
-        assertEquals(12, plane.getBusinessSeats(), "Має зберегтися 12 місць");
+        assertEquals(1,          p.getId());
+        assertEquals("Boeing 737", p.getModel());
+        assertEquals(2500,       p.getFuelConsumption());
+        assertEquals(5000,       p.getFlightRangeKm());
+        assertEquals(850.0,      p.getCruiseSpeedKmh(), 0.01);
+        assertEquals(180.0,      p.getCapacity(),       0.01);
+        assertTrue(p.isHasBusinessClass());
+        assertEquals(12, p.getBusinessSeats());
     }
 
     @Test
-    void testConstructorWithoutBusinessClass() {
-        // Сценарій: Передаємо кількість місць (50), але прапорець hasBusiness = false.
-        // Конструктор має примусово встановити businessSeats = 0.
-        PassengerPlane plane = new PassengerPlane(
-                "Airbus A320", 2400, 4800, 840, 150,
-                false, 50
-        );
+    void constructor_withoutBusinessClass_businessSeatsIsZero() {
+        // Навіть якщо передати businessSeats > 0, але hasBusiness=false → має стати 0
+        PassengerPlane p = new PassengerPlane(2, "Airbus A320", 2400, 4800, 840, 150, false, 50);
 
-        assertFalse(plane.isHasBusinessClass());
-        assertEquals(0, plane.getBusinessSeats(), "Кількість місць має обнулитися, бо бізнес-класу немає");
+        assertFalse(p.isHasBusinessClass());
+        assertEquals(0, p.getBusinessSeats());
     }
 
     @Test
-    void testSetHasBusinessClass_Disabling() {
-        // Сценарій: Спочатку бізнес-клас є, потім ми його вимикаємо
-        PassengerPlane plane = new PassengerPlane("TestJet", 100, 1000, 500, 100, true, 20);
+    void constructor_businessClassWithZeroSeats_seatsRemainZero() {
+        PassengerPlane p = new PassengerPlane(3, "SmallJet", 800, 1500, 600, 50, true, 0);
 
-        // Вимикаємо
-        plane.setHasBusinessClass(false);
+        assertTrue(p.isHasBusinessClass());
+        assertEquals(0, p.getBusinessSeats());
+    }
 
-        // Перевіряємо, чи обнулилися місця (згідно з логікою твого сеттера)
-        assertFalse(plane.isHasBusinessClass());
-        assertEquals(0, plane.getBusinessSeats(), "Місця мають скинутися на 0 при вимкненні бізнес-класу");
+    // ── setHasBusinessClass ──
+
+    @Test
+    void setHasBusinessClass_disabling_resetsSeatsToZero() {
+        PassengerPlane p = new PassengerPlane(1, "LuxJet", 1000, 2000, 800, 100, true, 20);
+
+        p.setHasBusinessClass(false);
+
+        assertFalse(p.isHasBusinessClass());
+        assertEquals(0, p.getBusinessSeats());
     }
 
     @Test
-    void testSetHasBusinessClass_Enabling() {
-        // Сценарій: Вмикаємо бізнес-клас
-        PassengerPlane plane = new PassengerPlane("TestJet", 100, 1000, 500, 100, false, 0);
+    void setHasBusinessClass_enabling_flagChanges_seatsStayZero() {
+        PassengerPlane p = new PassengerPlane(1, "EcoJet", 1000, 2000, 800, 100, false, 0);
 
-        plane.setHasBusinessClass(true);
-        assertTrue(plane.isHasBusinessClass());
-        // Місця залишаються 0, поки ми їх не задамо явно, але прапорець змінився
-        assertEquals(0, plane.getBusinessSeats());
+        p.setHasBusinessClass(true);
+
+        assertTrue(p.isHasBusinessClass());
+        // Місця ще 0 — треба задати окремо
+        assertEquals(0, p.getBusinessSeats());
     }
 
     @Test
-    void testSetBusinessSeats_Logic() {
-        // 1. Спробуємо встановити місця, коли бізнес-клас ВИМКНЕНО
-        PassengerPlane planeNoBiz = new PassengerPlane("SimpleJet", 100, 1000, 500, 100, false, 0);
-        planeNoBiz.setBusinessSeats(10);
-        assertEquals(0, planeNoBiz.getBusinessSeats(), "Не можна встановити місця, якщо hasBusinessClass = false");
+    void setHasBusinessClass_trueToTrue_noChange() {
+        PassengerPlane p = new PassengerPlane(1, "Jet", 1000, 2000, 800, 100, true, 15);
 
-        // 2. Спробуємо встановити місця, коли бізнес-клас УВІМКНЕНО
-        PassengerPlane planeWithBiz = new PassengerPlane("LuxJet", 100, 1000, 500, 100, true, 5);
-        planeWithBiz.setBusinessSeats(25);
-        assertEquals(25, planeWithBiz.getBusinessSeats(), "Місця мають оновитися успішно");
+        p.setHasBusinessClass(true);
+
+        assertTrue(p.isHasBusinessClass());
+        assertEquals(15, p.getBusinessSeats()); // місця не скинулись
+    }
+
+    // ── setBusinessSeats ──
+
+    @Test
+    void setBusinessSeats_whenBusinessClassEnabled_updatesSeats() {
+        PassengerPlane p = new PassengerPlane(1, "LuxJet", 1000, 2000, 800, 100, true, 5);
+
+        p.setBusinessSeats(25);
+
+        assertEquals(25, p.getBusinessSeats());
     }
 
     @Test
-    void testToString() {
-        PassengerPlane plane = new PassengerPlane("Boeing", 1000, 2000, 800, 100, true, 10);
-        String result = plane.toString();
+    void setBusinessSeats_whenBusinessClassDisabled_doesNothing() {
+        PassengerPlane p = new PassengerPlane(1, "SimpleJet", 1000, 2000, 800, 100, false, 0);
 
-        assertNotNull(result);
-        assertTrue(result.contains("PassengerPlane"));
-        assertTrue(result.contains("hasBusinessClass=true"));
-        assertTrue(result.contains("businessSeats=10"));
+        p.setBusinessSeats(10);
+
+        assertEquals(0, p.getBusinessSeats()); // залишається 0
+    }
+
+    // ── toString ──
+
+    @Test
+    void toString_containsClassName() {
+        PassengerPlane p = new PassengerPlane(1, "Boeing", 1000, 2000, 800, 100, true, 10);
+        String s = p.toString();
+
+        assertNotNull(s);
+        assertTrue(s.contains("PassengerPlane"));
+    }
+
+    @Test
+    void toString_containsBusinessClassInfo_whenEnabled() {
+        PassengerPlane p = new PassengerPlane(1, "Boeing", 1000, 2000, 800, 100, true, 10);
+        String s = p.toString();
+
+        assertTrue(s.contains("hasBusinessClass=true"));
+        assertTrue(s.contains("businessSeats=10"));
+    }
+
+    @Test
+    void toString_containsBusinessClassInfo_whenDisabled() {
+        PassengerPlane p = new PassengerPlane(1, "Airbus", 1000, 2000, 800, 100, false, 0);
+        String s = p.toString();
+
+        assertTrue(s.contains("hasBusinessClass=false"));
+        assertTrue(s.contains("businessSeats=0"));
+    }
+
+    // ── Спадковість ──
+
+    @Test
+    void isInstanceOfPlane() {
+        PassengerPlane p = new PassengerPlane(1, "Jet", 1000, 2000, 800, 100, false, 0);
+        assertInstanceOf(Plane.class, p);
     }
 }

@@ -232,3 +232,7 @@ INFO: === Запуск програми ===
 INFO: Відредаговано апарат: MH-6
 трав. 12, 2026 7:30:25 ПП ui.MainController onDeletePlane
 INFO: Видалено з БД: MH-6
+трав. 12, 2026 9:24:12 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 12, 2026 9:28:33 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
