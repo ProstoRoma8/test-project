@@ -19,7 +19,9 @@
     <VBox spacing="6">
         <Label text="Тип апарату" styleClass="field-label"/>
         <HBox spacing="12">
-            <RadioButton fx:id="rbPassenger" text="Пасажирський" toggleGroup="$typeGroup" selected="true"/>
+            <RadioButton fx:id="rbPassenger" text="Пасажирський" toggleGroup="$typeGroup" selected="true">
+            <toggleGroup><ToggleGroup fx:id="typeGroup"/></toggleGroup>
+            </RadioButton>
             <RadioButton fx:id="rbCargo"     text="Вантажний"    toggleGroup="$typeGroup"/>
             <RadioButton fx:id="rbHeli"      text="Гелікоптер"   toggleGroup="$typeGroup"/>
         </HBox>

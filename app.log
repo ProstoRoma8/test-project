@@ -190,3 +190,15 @@ INFO: === Запуск програми ===
 SEVERE: Помилка відкриття діалогу: Error resolving onAction='#onSave', either the event handler is not in the Namespace or there is an error in the script.
 /C:/Users/roma/Documents/Study/Курсова%20ООП/project/target/classes/fxml/PlaneDialog.fxml:63
 
+трав. 11, 2026 9:59:55 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 11, 2026 10:01:00 ПП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 12, 2026 10:23:30 ДП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 12, 2026 10:32:55 ДП ui.PlaneDialogController applyEdits
+INFO: Відредаговано апарат: test-heli
+трав. 12, 2026 10:33:40 ДП main.AppContext <clinit>
+INFO: === Запуск програми ===
+трав. 12, 2026 10:50:10 ДП main.AppContext <clinit>
+INFO: === Запуск програми ===

@@ -11,7 +11,7 @@ public abstract class Plane {
 
     public Plane(int id, String model, int fuelConsumption, int flightRangeKm,
                  double cruiseSpeedKmh, double capacity) {
-        this.id = this.id;
+        this.id = id;
         this.model = model;
         this.fuelConsumption = fuelConsumption;
         this.flightRangeKm = flightRangeKm;

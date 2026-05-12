@@ -54,7 +54,7 @@ public class PlaneDialogController implements Initializable {
     private CheckBox  hoistCheckBox;
 
     private Stage dialogStage;
-    private PlaneDao planeDao;
+    private final PlaneDao planeDao = new PlaneDao();
 
     // ─────────────────────────────────────────────
     @Override
@@ -178,7 +178,7 @@ public class PlaneDialogController implements Initializable {
     // ══════════════════════════════════════════════
 
     @FXML
-    private void onSave(int id) {
+    private void onSave() {
         hideError();
 
         // Загальна валідація
