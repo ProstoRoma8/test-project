@@ -202,7 +202,7 @@ public class PlaneDialogController implements Initializable {
         // Залежно від режиму — редагуємо або додаємо
         if (existingPlane != null) {
             applyEdits(existingPlane, model, fuel, range, speed);
-            // Тут варто додати planeDao.updatePlane(existingPlane), якщо створите такий метод
+            planeDao.updatePlane(existingPlane);
         } else {
             Plane newPlane = createPlane(model, fuel, range, speed);
             if (newPlane != null) {
@@ -306,6 +306,8 @@ public class PlaneDialogController implements Initializable {
             return new Helicopter(id, model, fuel, range, speed, (int) cap, alt, hoistCheckBox.isSelected());
         }
     } */
+
+
 
     private double parseDoubleField(TextField field, String errorMsg) {
         try {
